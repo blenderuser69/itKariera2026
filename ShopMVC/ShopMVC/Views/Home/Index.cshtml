@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<style>
+    body {
+        background-color: darkgrey;
+    }
+
+</style>
+<div class="text-center py-5">
+    <h1 class="display-4 fw-bold">MarketValueCorner</h1>
+    <p class="lead text-muted">We value our customers</p>
+    <div class="mt-4 d-flex justify-content-center gap-3">
+        <a href="/Products" class="btn btn-primary btn-lg px-4">Browse Products</a>
+        <a href="/Orders/Create" class="btn btn-outline-secondary btn-lg px-4">New Order</a>
+    </div>
+</div>
+
+<div class="row mt-5 g-4">
+    <div class="col-md-4">
+        <div class="card p-4 text-center">
+            <h1></h1>
+            <h5 class="mt-2">Products</h5>
+            <p class="text-muted">Browse our wide selection of products.</p>
+            <a href="/Products" class="btn btn-outline-primary btn-sm">View Products</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-4 text-center">
+            <h1></h1>
+            <h5 class="mt-2">Easy Ordering</h5>
+            <p class="text-muted">Place your order in just a few clicks.</p>
+            <a href="/Orders/Create" class="btn btn-outline-primary btn-sm">Order Now</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-4 text-center">
+            <h1></h1>
+            <h5 class="mt-2">Track Orders</h5>
+            <p class="text-muted">View and manage all your orders.</p>
+            <a href="/Orders" class="btn btn-outline-primary btn-sm">My Orders</a>
+        </div>
+    </div>
+</div>

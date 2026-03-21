@@ -1,0 +1,51 @@
+﻿@model List<ShopMVC.Models.Product>
+
+@{
+    ViewData["Title"] = "New Order";
+}
+
+<h2>New Order</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form method="post" action="/Orders/Create">
+    <div class="mb-3">
+        <label>Customer Name</label>
+        <input name="customerName" class="form-control" required />
+    </div>
+
+    <h4>Select Products:</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Available</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>
+                        @product.Name
+                        <input type="hidden" name="productIds" value="@product.Id" />
+                    </td>
+                    <td>@product.PriceFormatted</td>
+                    <td>@product.Stock</td>
+                    <td>
+                        <input type="number" name="quantities" value="0"
+                               min="0" max="@product.Stock" class="form-control" style="width:80px" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Place Order</button>
+    <a href="/Orders" class="btn btn-secondary">Cancel</a>
+</form>

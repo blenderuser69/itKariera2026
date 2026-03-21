@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+<style>
+    body {
+        background-color: darkgrey;
+    }
+
+    .navbar {
+        background-color: #1a1a2e !important;
+        padding: 12px 20px;
+    }
+
+    .table thead {
+        background-color: #1a1a2e;
+        color: white;
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border-radius: 10px;
+    }
+</style>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <h2>Login</h2>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+
+        <form method="post" action="/Login">
+            <div class="mb-3">
+                <label>Username</label>
+                <input name="username" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label>Password</label>
+                <input name="password" type="password" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+    </div>
+</div>

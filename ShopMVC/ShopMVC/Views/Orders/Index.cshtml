@@ -1,0 +1,43 @@
+﻿@model List<ShopMVC.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<h2>Orders</h2>
+<a href="/Orders/Create" class="btn btn-primary mb-3">+ New Order</a>
+
+@if (Model.Count == 0)
+{
+    <p>No orders yet.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.CustomerName</td>
+                    <td>@order.OrderDate.ToString("dd.MM.yyyy")</td>
+                    <td>@order.Status</td>
+                    <td>@order.Items.Sum(i => i.UnitPrice * i.Quantity).ToString("F2")$</td>
+                    <td>
+                        <a href="/Orders/Delete/@order.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

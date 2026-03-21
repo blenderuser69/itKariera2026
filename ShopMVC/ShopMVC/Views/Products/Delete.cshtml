@@ -1,0 +1,13 @@
+﻿@model ShopMVC.Models.Product
+
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+<h2>Delete Product</h2>
+<p>Are you sure you want to delete <strong>@Model.Name</strong>?</p>
+
+<form method="post" action="/Products/Delete/@Model.Id">
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="/Products" class="btn btn-secondary">Cancel</a>
+</form>

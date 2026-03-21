@@ -1,0 +1,46 @@
+﻿@model List<ShopMVC.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>Products</h2>
+
+<!-- Търсене -->
+<form method="get" action="/Products" class="mb-3 d-flex gap-2">
+    <input name="search" value="@ViewBag.Search"
+           class="form-control" placeholder="Search products...(Case sensitive!)" />
+    <button type="submit" class="btn btn-outline-primary">Search</button>
+    <a href="/Products" class="btn btn-outline-secondary">Clear</a>
+</form>
+
+<a href="/Products/Create" class="btn btn-primary mb-3">+ Add Product</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.PriceFormatted</td>
+                <td>@product.Stock</td>
+                <td>@product.Category</td>
+                <td>
+                    <a href="/Products/Edit/@product.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/Products/Delete/@product.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
