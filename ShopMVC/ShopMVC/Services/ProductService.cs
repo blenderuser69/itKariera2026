@@ -15,7 +15,7 @@ namespace ShopMVC.Services
         // vzima vsichki producti
         public List<Product> GetAll()
             => _context.Products.ToList();
-        //vrushta po id
+        //za tursene
         public Product GetById(int id)
         {
             var product = _context.Products.FirstOrDefault(p => p.Id == id);
