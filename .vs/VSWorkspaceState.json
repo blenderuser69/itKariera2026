@@ -4,8 +4,10 @@
     "\\ShopMVC",
     "\\ShopMVC\\ShopMVC",
     "\\ShopMVC\\ShopMVC.Tests",
-    "\\ShopMVC\\ShopMVC\\Controllers"
+    "\\ShopMVC\\ShopMVC\\Controllers",
+    "\\ShopMVC\\ShopMVC\\Views",
+    "\\ShopMVC\\ShopMVC\\Views\\Products"
   ],
-  "SelectedNode": "\\ShopMVC\\ShopMVC\\Controllers\\OrdersController.cs",
+  "SelectedNode": "\\ShopMVC\\ShopMVC\\Views\\Products\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

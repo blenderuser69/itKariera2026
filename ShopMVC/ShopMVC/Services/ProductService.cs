@@ -12,10 +12,10 @@ namespace ShopMVC.Services
         {
             _context = context;
         }
-        // vzima vsichki producti
+        //takes all the products
         public List<Product> GetAll()
             => _context.Products.ToList();
-        //za tursene
+        //searches by id
         public Product GetById(int id)
         {
             var product = _context.Products.FirstOrDefault(p => p.Id == id);

@@ -12,11 +12,11 @@ namespace ShopMVC
 
             builder.Services.AddControllersWithViews();
 
-            // registrira baza danni s sqlLite
+            // makes a db with sqlLite
             builder.Services.AddDbContext<ShopDbContext>(options =>
                 options.UseSqlite("Data Source=shop.db"));
 
-            // nova instanciq za vsqka zaqvka
+
             builder.Services.AddScoped<ProductService>();
             builder.Services.AddScoped<OrderService>();
 
@@ -26,14 +26,14 @@ namespace ShopMVC
             var app = builder.Build();
 
             app.UseStaticFiles();
-            //opredelq koy controler koq zaqvka
+
             app.UseRouting();
 
             app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Products}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }
