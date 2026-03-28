@@ -6,16 +6,12 @@ namespace ShopMVC.Controllers
 {
     public class HomeController : Controller
     {
+        // /home
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+        //page for erros
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

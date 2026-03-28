@@ -1,5 +1,4 @@
 ﻿@model List<ShopMVC.Models.Order>
-
 @{
     ViewData["Title"] = "Orders";
 }
@@ -31,10 +30,35 @@ else
                     <td>@order.Id</td>
                     <td>@order.CustomerName</td>
                     <td>@order.OrderDate.ToString("dd.MM.yyyy")</td>
-                    <td>@order.Status</td>
+                    <td>
+                        @{
+                            string badgeClass = "bg-warning text-dark";
+
+                            if (order.Status == "Completed")
+                            {
+                                badgeClass = "bg-success";
+                            }
+                            else if (order.Status == "Cancelled")
+                            {
+                                badgeClass = "bg-danger";
+                            }
+                        }
+                        <span class="badge @badgeClass">@order.Status</span>
+                    </td>
                     <td>@order.Items.Sum(i => i.UnitPrice * i.Quantity).ToString("F2")$</td>
                     <td>
-                        <a href="/Orders/Delete/@order.Id" class="btn btn-danger btn-sm">Delete</a>
+                        @if (Context.Session.GetString("IsLoggedIn") == "true")
+                        {
+                            <form method="post" action="/Orders/UpdateStatus/@order.Id" class="d-inline">
+                                <select name="newStatus" class="form-select form-select-sm d-inline w-auto">
+                                    <option>Pending</option>
+                                    <option>Completed</option>
+                                    <option>Cancelled</option>
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-outline-primary">Update</button>
+                            </form>
+                            <a href="/Orders/Delete/@order.Id" class="btn btn-danger btn-sm ms-1">Delete</a>
+                        }
                     </td>
                 </tr>
             }

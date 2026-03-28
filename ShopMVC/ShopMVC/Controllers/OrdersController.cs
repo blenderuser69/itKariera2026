@@ -5,8 +5,8 @@ using ShopMVC.Services;
 namespace ShopMVC.Controllers
 {
     
-    /// Controller za upravlenie na poruchki
-    /// obrabotva vsichki zaqvki kum /Orders.
+    
+    /// crud operations for /Orders.
     
     public class OrdersController : Controller
     {
@@ -19,21 +19,21 @@ namespace ShopMVC.Controllers
             _productService = productService;
         }
 
-        //pokazva vsichki poruchki
+        //shows all orders
         public IActionResult Index()
         {
             var orders = _orderService.GetAll();
             return View(orders);
         }
 
-        //pokazva formata za poruchka
+        //shows the form for placing a new order
         public IActionResult Create()
         {
             var products = _productService.GetAll();
             return View(products);
         }
 
-        //zapisvane na poruchkata
+        //saves the new order with selected products and quantities
         [HttpPost]
         public IActionResult Create(string customerName, List<int> productIds, List<int> quantities)
         {
@@ -65,7 +65,7 @@ namespace ShopMVC.Controllers
             }
         }
 
-        //potvurjdava iztrivaneto
+        //shows confirmation before deleting the order
         public IActionResult Delete(int id)
         {
             var order = _orderService.GetById(id);
@@ -76,11 +76,18 @@ namespace ShopMVC.Controllers
             return View(order);
         }
 
-        //iztriva poruchkata
+        //removes the order from the database
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
             _orderService.Delete(id);
+            return RedirectToAction("Index");
+        }
+        //updates the status of an order - Pending, Completed, Cancelled
+        [HttpPost]
+        public IActionResult UpdateStatus(int id, string newStatus)
+        {
+            _orderService.UpdateStatus(id, newStatus);
             return RedirectToAction("Index");
         }
     }

@@ -2,16 +2,16 @@
 {
     public class OrderItem
     {
-        //id na itema
+        //id of the item
         public int Id { get; set; }
-        //id na poruchkata
+        //id of the order the item is in
         public int OrderId { get; set; }
-        //poruchkata kum koqto prinadleji
         public Order Order { get; set; } = null!;
-        //id na samiq artikul
+        //id for the item that is ordered
         public int ProductId { get; set; }
         public Product Product { get; set; } = null!;
         public int Quantity { get; set; }
+        // the price of the product when it was ordered, the initial price can be changed
         public decimal UnitPrice { get; set; }
     }
 }

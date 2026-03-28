@@ -26,11 +26,22 @@ namespace ShopMVC.Services
             return product;
         }
 
-        public void Add(Product product)
+        public bool Add(Product product)
         {
+            
+            bool exists = _context.Products
+                .Any(p => p.Name.ToLower() == product.Name.ToLower());
+
+            if (exists)
+            {
+                return false;
+            }
+
             _context.Products.Add(product);
             _context.SaveChanges();
+            return true;
         }
+
 
         public bool Update(Product updated)
         {

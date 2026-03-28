@@ -4,6 +4,7 @@ using ShopMVC.Services;
 
 namespace ShopMVC.Controllers
 {
+    //crud operations for the products only for admin
     public class ProductsController : Controller
     {
         private readonly ProductService _productService;
@@ -13,13 +14,13 @@ namespace ShopMVC.Controllers
             _productService = productService;
         }
 
-        // Помощен метод - проверява дали е влязъл
+
         private bool IsLoggedIn()
         {
             return HttpContext.Session.GetString("IsLoggedIn") == "true";
         }
 
-        //pokazva spisuk s vsichi producti
+        //shows all products with search option
         public IActionResult Index(string search)
         {
             ViewBag.Search = search;
@@ -37,7 +38,7 @@ namespace ShopMVC.Controllers
             }
         }
 
-        //pokazva forma na dobavqne
+        //shows the form for adding a new product
         public IActionResult Create()
         {
             if (!IsLoggedIn())
@@ -46,7 +47,7 @@ namespace ShopMVC.Controllers
             }
             return View();
         }
-
+        //saves the new product and returns error if product already exists
         [HttpPost]
         public IActionResult Create(Product product)
         {
@@ -54,10 +55,18 @@ namespace ShopMVC.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
-            _productService.Add(product);
+
+            bool added = _productService.Add(product);
+
+            if (!added)
+            {
+                ViewBag.Error = $"Product '{product.Name}' already exists!";
+                return View(product);
+            }
+
             return RedirectToAction("Index");
         }
-
+        //shows the form for editing a product
         public IActionResult Edit(int id)
         {
             if (!IsLoggedIn())
@@ -69,7 +78,7 @@ namespace ShopMVC.Controllers
             return View(product);
         }
 
-        //zapisva promenite
+        //saves the changes to the product
         [HttpPost]
         public IActionResult Edit(Product product)
         {
@@ -81,7 +90,7 @@ namespace ShopMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        //potvurjdenie za iztrivane
+        //shows confirmation before deleting
         public IActionResult Delete(int id)
         {
             if (!IsLoggedIn())
@@ -93,7 +102,7 @@ namespace ShopMVC.Controllers
             return View(product);
         }
 
-        //triene na producta
+        //removes the product from the database
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {

@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ShopMVC",
+    "\\ShopMVC\\ShopMVC",
+    "\\ShopMVC\\ShopMVC.Tests",
+    "\\ShopMVC\\ShopMVC\\Controllers"
+  ],
+  "SelectedNode": "\\ShopMVC\\ShopMVC\\Controllers\\OrdersController.cs",
+  "PreviewInSolutionExplorer": false
+}

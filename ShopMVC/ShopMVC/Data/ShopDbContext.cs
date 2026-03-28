@@ -9,7 +9,7 @@ namespace ShopMVC.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
 
-        //contructora poluchava nastroykite ot program.cs i ot testove
+        //the constructor gets the settings from program.cs
         public ShopDbContext(DbContextOptions<ShopDbContext> options)
             : base(options) { }
 
